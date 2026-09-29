@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  body { width: 260px; font: 14px sans-serif; padding: 12px; }
+  input { width: 100%; box-sizing: border-box; margin: 4px 0 10px; padding: 6px; }
+  button { width: 100%; padding: 8px; }
+  #msg { color: #080; margin-top: 8px; min-height: 1em; }
+</style>
+<label>伺服器網址 (wss://... 或 ws://localhost:8080)</label>
+<input id="server" placeholder="wss://your-server.example.com">
+<label>房間代碼 (兩人填一樣)</label>
+<input id="room" placeholder="例如 our-room-123">
+<button id="save">儲存並連線</button>
+<div id="msg"></div>
+<script src="popup.js"></script>
