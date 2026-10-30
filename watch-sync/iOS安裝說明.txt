@@ -1,0 +1,22 @@
+【iPhone / iPad（Safari）安裝】
+
+1. App Store 搜尋並安裝 Userscripts（開發者 Justin Wasack，免費，需 iOS 15 以上）。
+2. 打開 Userscripts App，依畫面說明完成設定。
+3. 到「設定 → Safari → 擴充功能 → Userscripts」：開啟，並把權限設成「所有網站：允許」。
+4. 把 iqiyi-sync.user.js 傳到手機/平板（AirDrop、iCloud、LINE 傳給自己再「儲存到檔案」都可以），
+   放進 Userscripts 所指定的資料夾（在「檔案」App 裡，預設在「我的 iPhone → Userscripts」）。
+5. 用 Safari 打開愛奇藝（www.iq.com）影片頁，點網址列左邊的「AA」（iPad 是拼圖圖示）→ Userscripts，
+   確認「愛奇藝同步觀影」是開啟的。
+6. 重新整理頁面。第一次會跳出輸入框，填：
+   伺服器網址：wss://你的網址
+   房間代碼：和電腦一樣
+7. 影片左上角出現綠色「已連線（房內 2 人）」就成功了。
+
+【操作】
+- 點左上角的狀態文字：修改伺服器網址/房間代碼
+- 點旁邊的「↻」：把我現在的進度推給對方（等於電腦版的 Alt+S）
+
+【注意】
+- 必須用 Safari 開網頁版，愛奇藝 App 不行。
+- 鎖屏或切到別的 App 一陣子，連線會被 iOS 中斷，回來後會自動重連。
+- iOS 常擋掉「非手動」的自動播放：如果朋友按了播放你這邊沒動，先自己點一下影片播放一次，之後通常就正常。
