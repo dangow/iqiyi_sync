@@ -87,6 +87,7 @@
       if (isTop && !m.me && m.count > lastCount) sendNav();
       lastCount = m.count;
     } else if (m.type === 'nav') goTo(m.url);
+    else if (m.type === 'request') { if (video) send(video.paused ? 'pause' : 'play'); } // 新加入的人要進度 → 回報
     else if (m.type === 'play' || m.type === 'pause') handle(m);
   });
 
