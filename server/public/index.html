@@ -44,7 +44,7 @@
   }
 
   function handle(m) {
-    if (m.vid && m.vid !== vid) load(m.vid);
+    if (typeof m.vid === 'string' && /^[\w-]{11}$/.test(m.vid) && m.vid !== vid) load(m.vid);
     if (!pl || !pl.seekTo) return;
     lock();
     if (typeof m.time === 'number' && Math.abs(pl.getCurrentTime() - m.time) > 0.5) pl.seekTo(m.time, true);
@@ -56,7 +56,9 @@
     ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host);
     ws.onopen = () => ws.send(JSON.stringify({ type: 'join', room: $('room').value.trim(), peer }));
     ws.onmessage = (e) => {
-      const m = JSON.parse(e.data);
+      let m;
+      try { m = JSON.parse(e.data); } catch { return; }
+      if (m.type === 'status') { $('s').textContent = String(m.text || '').slice(0, 100); return; }
       if (m.type === 'peers') {
         $('s').textContent = `已連線（房內 ${m.count} 人）`;
         if (!m.me && m.count > lastCount) sendNav();

@@ -6,10 +6,10 @@
   button { width: 100%; padding: 8px; }
   #msg { color: #080; margin-top: 8px; min-height: 1em; }
 </style>
-<label>伺服器網址 (wss://... 或 ws://localhost:8080)</label>
+<label>伺服器網址 (wss://...；本機測試才可用 ws://localhost:8080)</label>
 <input id="server" placeholder="wss://your-server.example.com">
-<label>房間代碼 (兩人填一樣)</label>
-<input id="room" placeholder="例如 our-room-123">
+<label>房間代碼 (大家填一樣，至少 8 個字元，越難猜越好)</label>
+<input id="room" placeholder="例如 dango-9x7k-movie">
 <button id="save">儲存並連線</button>
 <div id="msg"></div>
 <script src="popup.js"></script>

@@ -58,12 +58,26 @@
   // 把我目前的影片網址告訴對方（只有最上層頁面負責）
   const sendNav = () => { if (isTop && videoPage()) post({ type: 'nav', url: location.href }); };
 
-  // 對方選了影片 → 我跳過去（只允許同一個網站，避免被導去別處）
+  // 只允許跳到「真的是影片頁」的網址（https、指定網站、指定路徑）。
+  // 避免有人送來登出、帳號設定、轉址之類的網址，把你導去不該去的地方。
+  const HOSTS = {
+    youtube: /^(www\.|m\.)?youtube\.com$/,
+    netflix: /^(www\.)?netflix\.com$/,
+    iqiyi: /^([\w-]+\.)?(iq\.com|iqiyi\.com)$/,
+  };
+  function okVideoUrl(u) {
+    if (u.protocol !== 'https:' || !HOSTS[site].test(u.hostname)) return false;
+    if (site === 'youtube') return u.pathname === '/watch' && /^[\w-]{11}$/.test(u.searchParams.get('v') || '');
+    if (site === 'netflix') return /^\/watch\/\d+$/.test(u.pathname);
+    return /^\/(play|v_)/.test(u.pathname);
+  }
+
+  // 對方選了影片 → 我跳過去
   function goTo(url) {
     if (!isTop) return;
     let u;
     try { u = new URL(url); } catch { return; }
-    if (!/^https?:$/.test(u.protocol) || u.hostname.split('.').slice(-2).join('.') !== root) return;
+    if (!okVideoUrl(u)) return;
     if (key(url) !== key(location.href)) {
       setBadge('跳轉到對方選的影片…', true);
       location.href = url;
